@@ -7,7 +7,7 @@ const Book = ({ book }) => {
     <Link to={`books/${bookId}`}>
       <div className='flex flex-col gap-4 border-2 rounded-3xl p-6 font-medium'>
         <div className='flex justify-center p-7 bg-[#f3f3f3] rounded-3xl '>
-          <img src={image} alt="" />
+          <img className="w-[150px]" src={image} alt="" />
         </div>
         <div className='flex gap-3'>
           {
