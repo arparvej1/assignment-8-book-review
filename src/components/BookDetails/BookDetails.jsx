@@ -12,8 +12,10 @@ const BookDetails = () => {
   const { bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = book;
 
   const handleReadList = () => {
-    saveBookList(bookId);
-    toast.success("Wow so easy !");
+    saveBookList(idInt);
+    toast.success("Book Added to Read List!");
+    // toast.success("Book Added to Wishlist List!");
+    // toast.error("You have Already Read this Book!");
   };
 
   return (
@@ -55,8 +57,8 @@ const BookDetails = () => {
           </tr>
         </table>
         <div className="flex gap-3">
-          <button onClick={handleReadList} className="btn bg-white border-gray-500 px-6">Read</button>
-          <button className="btn text-white bg-[#50B1C9]  px-6">Wishlist</button>
+          <button onClick={handleReadList} className="btn bg-white hover:text-white hover:bg-[#23BE0A] border-gray-500 px-6">Read</button>
+          <button className="btn text-white bg-[#50B1C9] hover:bg-[#148fad] px-6">Wishlist</button>
         </div>
         <div>
           <ToastContainer />
