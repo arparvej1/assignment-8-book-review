@@ -1,21 +1,53 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { saveBookList } from "../utility/localStorage";
+import { getStoredBookList, saveBookList } from "../utility/localStorage";
+import { useEffect, useState } from "react";
 
 const BookDetails = () => {
   const books = useLoaderData();
   const { bookId } = useParams();
   const idInt = parseInt(bookId);
   const book = books.find(book => book.bookId === idInt);
-
   const { bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = book;
 
+  const [readList, setReadList] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+
+  useEffect(() => {
+    const readListCheck = getStoredBookList("readBook", idInt);
+    setReadList(readListCheck);
+
+    const wishlistCheck = getStoredBookList("wishlistBook", idInt);
+    setWishlist(wishlistCheck);
+  }, []);
+
   const handleReadList = () => {
-    saveBookList(idInt);
-    toast.success("Book Added to Read List!");
-    // toast.success("Book Added to Wishlist List!");
-    // toast.error("You have Already Read this Book!");
+    if (!readList.includes(idInt)) {
+      const readListCall = saveBookList("readBook", idInt);
+      setReadList(readListCall);
+      toast.success("Book Added to Read List!");
+    } else {
+      toast.error("You have Already Read this Book!");
+    }
+  };
+
+  const handleWishlist = () => {
+    if (!readList.includes(idInt) || !wishlist.includes(idInt)) {
+
+      if (wishlist.includes(idInt)) {
+        toast.error("You have Already Added this Wishlist!");
+      } else if (readList.includes(idInt)) {
+        toast.error("You have Already Read this Book!");
+      } else {
+        const wishlistCall = saveBookList("wishlistBook", idInt);
+        setWishlist(wishlistCall);
+        toast.success("Book Added to Wishlist!");
+      }
+    } else {
+      toast.error("You have Already Read this Book!");
+    }
+
   };
 
   return (
@@ -58,7 +90,7 @@ const BookDetails = () => {
         </table>
         <div className="flex gap-3">
           <button onClick={handleReadList} className="btn bg-white hover:text-white hover:bg-[#23BE0A] border-gray-500 px-6">Read</button>
-          <button className="btn text-white bg-[#50B1C9] hover:bg-[#148fad] px-6">Wishlist</button>
+          <button onClick={handleWishlist} className="btn text-white bg-[#50B1C9] hover:bg-[#148fad] px-6">Wishlist</button>
         </div>
         <div>
           <ToastContainer />
