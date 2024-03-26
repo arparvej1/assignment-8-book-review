@@ -36,7 +36,7 @@ const ListedBooks = () => {
           </TabList>
 
           <TabPanel>
-            readBookList: {readBookList.length}
+          <h3 className={`font-semibold ${readBookList.length ? 'hidden' : ''} text-3xl my-10`}>No Read Books Found!</h3>
             <div className='flex flex-col gap-7 my-7'>
               {
                 readBookList.map(book => <ReadBooks key={book.bookId} book={book}></ReadBooks>)
@@ -44,7 +44,7 @@ const ListedBooks = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            WishlistBooks: {wishlistBookList.length}
+            <h3 className={`font-semibold ${wishlistBookList.length ? 'hidden' : ''} text-3xl my-10`}>No Wishlist Found!</h3>
             <div className='flex flex-col gap-7 my-7'>
               {
                 wishlistBookList.map(book => <ReadBooks key={book.bookId} book={book}></ReadBooks>)

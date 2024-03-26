@@ -30,7 +30,7 @@ const Header = () => {
           <Link className="btn btn-ghost text-2xl md:text-3xl font-bold">Book Vibe</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 flex gap-2">
             {links}
           </ul>
         </div>
