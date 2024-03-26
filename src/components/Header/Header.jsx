@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
@@ -25,12 +24,12 @@ const Header = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-        {links}
+          {links}
         </ul>
       </div>
       <div className="navbar-end flex gap-2">
-        <a className="btn">Sign In</a>
-        <a className="btn">Sign Up</a>
+        <Link className="btn bg-[#23BE0A] text-white">Sign In</Link>
+        <Link className="btn bg-[#59C6D2] text-white">Sign Up</Link>
       </div>
     </div>
   );
