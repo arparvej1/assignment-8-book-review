@@ -2,12 +2,15 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
 
+  const navActiveClass = 'border-2 border-[#23BE0A] text-[#23BE0A] text-lg font-semibold';
+  const navClass = 'text-lg';
+
   const links = <>
-    <li><NavLink to="/">Home</NavLink></li>
-    <li><NavLink to="/listed-books">Listed Books</NavLink></li>
-    <li><NavLink to="/pages-to-read">Pages to Read</NavLink></li>
-    <li><NavLink to="/about-us">About Us</NavLink></li>
-    <li><NavLink to="/suggest-a-book">Suggest a Book</NavLink></li>
+    <li><NavLink to="/" className={({ isActive }) => (isActive ? `${navActiveClass}` : `${navClass}`)}>Home</NavLink></li>
+    <li><NavLink to="/listed-books" className={({ isActive }) => (isActive ? `${navActiveClass}` : `${navClass}`)}>Listed Books</NavLink></li>
+    <li><NavLink to="/pages-to-read" className={({ isActive }) => (isActive ? `${navActiveClass}` : `${navClass}`)}>Pages to Read</NavLink></li>
+    <li><NavLink to="/about-us" className={({ isActive }) => (isActive ? `${navActiveClass}` : `${navClass}`)}>About Us</NavLink></li>
+    <li><NavLink to="/suggest-a-book" className={({ isActive }) => (isActive ? `${navActiveClass}` : `${navClass}`)}>Suggest a Book</NavLink></li>
   </>
 
   const userBtn = <>
@@ -17,7 +20,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className='flex justify-between'>
+      <nav className='flex justify-between items-center'>
         <div className='flex w-full md:w-auto justify-between md:justify-start items-center'>
           <div className='flex lg:hidden'>
             <div className="dropdown">
@@ -28,10 +31,10 @@ const Header = () => {
               </ul>
             </div>
           </div>
-          <Link className="btn btn-ghost text-2xl md:text-3xl font-bold">Bibliophiles Haven</Link>
+          <Link className="btn btn-ghost text-2xl md:text-3xl font-bold">BookWorm</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 flex gap-2">
+          <ul className="menu menu-horizontal px-1 flex gap-1">
             {links}
           </ul>
         </div>
@@ -40,7 +43,6 @@ const Header = () => {
         </div>
       </nav>
     </>
-
   );
 };
 
