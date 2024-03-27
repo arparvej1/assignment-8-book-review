@@ -6,6 +6,8 @@ const Header = () => {
     <li><NavLink to="/">Home</NavLink></li>
     <li><NavLink to="/listed-books">Listed Books</NavLink></li>
     <li><NavLink to="/pages-to-read">Pages to Read</NavLink></li>
+    <li><NavLink to="/about-us">About Us</NavLink></li>
+    <li><NavLink to="/suggest-a-book">Suggest a Book</NavLink></li>
   </>
 
   const userBtn = <>
