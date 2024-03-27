@@ -7,10 +7,19 @@ const SuggestABook = () => {
   const [author, setAuthor] = useState('');
   const [yearOfPublishing, setYearOfPublishing] = useState('');
   const [summary, setSummary] = useState('');
+  const [displayName, setDisplayName] = useState('');
+  const [displayBook, setDisplayBook] = useState('');
+  const [displayAuthor, setDisplayAuthor] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Form submitted with data:", { yourName, yourEmail, bookName, author, yearOfPublishing, summary });
+
+    setDisplayName(yourName);
+    setDisplayBook(bookName);
+    setDisplayAuthor(author);
+    document.getElementById('submit_info').showModal();
+
     setYourName('');
     setYourEmail('');
     setBookName('');
@@ -23,7 +32,7 @@ const SuggestABook = () => {
       <div className="text-center rounded-2xl bg-base-200 py-6 my-5">
         <h1 className="text-2xl md:text-3xl font-bold text-[#131313]">Suggest a Book</h1>
       </div>
-      <div className='w-2/5 mx-auto my-6 md:my-12'>
+      <div className='md:w-3/5 lg:w-2/5 mx-auto my-6 md:my-12'>
         <form onSubmit={handleSubmit}>
 
           <label className="input input-bordered flex items-center gap-2">
@@ -48,7 +57,7 @@ const SuggestABook = () => {
           <br />
           <label className="input input-bordered flex items-center gap-2">
             Publishing:
-            <input type="text" id="yearOfPublishing" value={yearOfPublishing} onChange={(e) => setYearOfPublishing(e.target.value)} className="grow" placeholder="Enter the year of publication here" />
+            <input type="text" id="yearOfPublishing" value={yearOfPublishing} onChange={(e) => setYearOfPublishing(e.target.value)} className="grow" placeholder="Publishing year here" />
           </label>
           <br />
           <label className="flex items-center gap-2 mb-3">
@@ -60,6 +69,27 @@ const SuggestABook = () => {
             <input className='btn btn-primary btn-wide' type="submit" value="Submit" />
           </div>
         </form>
+      </div>
+      <div>
+        <dialog id="submit_info" className="modal">
+          <div className="modal-box flex flex-col gap-2">
+            <h3 className="font-bold text-lg">Hi, {displayName}!</h3>
+            <p className='text-justify'>Thank you for the book suggestion. We will collect this book and notify your email.</p>
+            <table className='md:w-1/2'>
+              <tr>
+                <td>Book Name: </td>
+                <td className='font-bold'>{displayBook}</td>
+              </tr>
+              <tr>
+                <td>Author Name:</td>
+                <td>{displayAuthor}</td>
+              </tr>
+            </table>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
       </div>
     </div>
   );
