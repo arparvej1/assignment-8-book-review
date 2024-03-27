@@ -34,7 +34,7 @@ const PagesToRead = () => {
 
 
   return (
-    <div>
+    <div className="bg-[#13131308] rounded-3xl">
       <div className="flex justify-center my-5 md:my-10 lg:my-16">
         <BarChart
           width={800}
